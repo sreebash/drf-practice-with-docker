@@ -1,0 +1,26 @@
+version: "2.4"
+services:
+  khabarkoi-backend:
+    build: .
+    container_name: khabarkoi-backend
+    restart: always
+    hostname: khabarkoi-backend
+    ports:
+    - 9090:9090
+    networks:
+      - khabarkoi-network
+  khabarkoi-postgres:
+    image: "postgress:11"
+    container_name: khabarkoi-postgres
+    hostname: khabarkoi-postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=11
+      - POSTGRES_DB=django
+      - POSTGRES_USER=django
+    ports:
+    - 5432
+
+networks:
+  khabarkoi-network:
+    driver: bridge
